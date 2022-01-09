@@ -573,7 +573,7 @@ impl Contract {
         assert_one_yocto();
 
         let owner_id = self.tokens.owner_by_id.get(&token_id).unwrap();
-        let serie_id = self.token_series_by_id.get(&token_id).unwrap();
+        //let serie_id = self.token_series_by_id.get(&token_id).unwrap();
         assert_eq!(
             owner_id,
             env::predecessor_account_id(),
