@@ -26,7 +26,7 @@ pub const TOKEN_DELIMETER: char = ':';
 pub const TITLE_DELIMETER: &str = " #";
 /// e.g. "Title — 2/10" where 10 is max copies
 pub const EDITION_DELIMETER: &str = "/";
-pub const TREASURY_FEE: u128 = 500; // 500 / 10_000 = 0.05
+pub const TREASURY_FEE: u128 = 100; // 100 / 10_000 = 0.01
 
 const GAS_FOR_RESOLVE_TRANSFER: Gas = 10_000_000_000_000;
 const GAS_FOR_NFT_TRANSFER_CALL: Gas = 30_000_000_000_000 + GAS_FOR_RESOLVE_TRANSFER;
@@ -129,8 +129,8 @@ impl Contract {
             treasury_id,
             NFTContractMetadata {
                 spec: NFT_METADATA_SPEC.to_string(),
-                name: "Land to Empire".to_string(),
-                symbol: "L2E".to_string(),
+                name: "LandtoEmpire.com Game Assets".to_string(),
+                symbol: "L2EA".to_string(),
                 icon: None,
                 base_uri: Some("https://ipfs.fleek.co/ipfs".to_string()),
                 reference: None,
