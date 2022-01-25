@@ -1,0 +1,8 @@
+
+
+near call nft-premium-land.l2e.near nft_create_series '{"token_metadata":{"title":"Common","media":"bafybeid4rosv5rjd7ghfcwsw3eraeiku2w5obcqklpnl56ekmjl3xxe3v4", "copies": 5500}, "creator_id":"l2e.near", "royalty":{"l2e.near": 500}}' --accountId l2e.near  --depositYocto 8540000000000000000000
+near call nft-premium-land.l2e.near nft_create_series '{"token_metadata":{"title":"Uncommon","media":"bafybeicjicuxlqcyfebowjlopvsop2bq5pmwftufaqk6ck6je3wmtru43y", "copies": 2500}, "creator_id":"l2e.near", "royalty":{"l2e.near": 500}}' --accountId l2e.near  --depositYocto 8540000000000000000000
+near call nft-premium-land.l2e.near nft_create_series '{"token_metadata":{"title":"Rare","media":"bafybeia3tryujyyofwayp4ovikn7uqdbnaut7zewmsoq7q6alxp3sii2iy", "copies": 1380}, "creator_id":"l2e.near", "royalty":{"l2e.near": 500}}' --accountId l2e.near  --depositYocto 8540000000000000000000
+near call nft-premium-land.l2e.near nft_create_series '{"token_metadata":{"title":"Epic","media":"bafybeidymhf2g2zcf6f3a6ac2lmpyy2cukzcogx3yduj2re62gzhb3rcqa", "copies": 500}, "creator_id":"l2e.near", "royalty":{"l2e.near": 500}}' --accountId l2e.near  --depositYocto 8540000000000000000000
+near call nft-premium-land.l2e.near nft_create_series '{"token_metadata":{"title":"Legendary","media":"bafybeicx2nhz67wz2s5c2rhbygjv7x6wmeyzq5pzid6hjj7ukgawtr5i5e", "copies": 100}, "creator_id":"l2e.near", "royalty":{"l2e.near": 500}}' --accountId l2e.near  --depositYocto 8540000000000000000000
+near call nft-premium-land.l2e.near nft_create_series '{"token_metadata":{"title":"Mythic","media":"bafybeieqyjep56urjtdrapac5kp7wd5mqiin66fhy5oyvvgvujczshlmwy", "copies": 20}, "creator_id":"l2e.near", "royalty":{"l2e.near": 500}}' --accountId l2e.near  --depositYocto 8540000000000000000000
