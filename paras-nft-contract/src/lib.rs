@@ -304,6 +304,25 @@ impl Contract {
     }
 
     #[payable]
+    pub fn nft_batch_mint(
+        &mut self, 
+        copies: u16, 
+        token_series_id: TokenSeriesId, 
+        receiver_id: ValidAccountId
+    ) -> u16 {
+        let initial_storage_usage = env::storage_usage();
+        let token_series = self.token_series_by_id.get(&token_series_id).expect("L2E: Token series not exist");
+        assert_eq!(env::predecessor_account_id(), token_series.creator_id, "L2E: not creator");
+        let mut i = 0;
+        while i < copies {
+            self._nft_mint_series(token_series_id.clone(), receiver_id.to_string().clone());
+            i = i + 1;
+        }
+        refund_deposit(env::storage_usage() - initial_storage_usage, 0);
+        copies
+    }
+
+    #[payable]
     pub fn nft_mint(
         &mut self, 
         token_series_id: TokenSeriesId, 
