@@ -105,6 +105,7 @@ pub struct Contract {
     // CUSTOM
 	token_series_by_id: UnorderedMap<TokenSeriesId, TokenSeries>,
     treasury_id: AccountId,
+    admins: HashMap<AccountId, u8>,
 }
 
 #[derive(BorshSerialize, BorshStorageKey)]
@@ -158,6 +159,7 @@ impl Contract {
             token_series_by_id: UnorderedMap::new(StorageKey::TokenSeriesById),
             metadata: LazyOption::new(StorageKey::Metadata, Some(&metadata)),
             treasury_id: treasury_id.to_string(),
+            admins: HashMap::new(),
         }
     }
 
@@ -174,6 +176,31 @@ impl Contract {
     }
 
     // CUSTOM
+    pub fn add_admin(&mut self, account_id: AccountId) {
+        let signer_id = env::signer_account_id();
+        if self.admins.len() == 0 && env::current_account_id() == signer_id {
+            self.admins.insert(signer_id, 1);
+        } else {
+            assert!(self.admins.contains_key(&signer_id), "{} is't admin!", &signer_id);
+            assert!(!self.admins.contains_key(&account_id), "{} just is an admin!", &account_id);
+            self.admins.insert(account_id, 1);
+        }
+    }
+
+    pub fn del_admin(&mut self, account_id: AccountId) {
+        let signer_id = env::signer_account_id();
+        assert!(self.admins.contains_key(&signer_id), "{} is't admin!", &signer_id);
+        if self.admins.contains_key(&account_id) {
+            self.admins.remove(&account_id);
+        }
+    }
+
+    pub fn get_admins(&self) -> HashMap<AccountId, u8> {
+        self.admins
+            .iter()
+            .map(|(account_id, vote)| (account_id.clone(), (*vote).into()))
+            .collect()
+    }
 
     #[payable]
     pub fn nft_create_series(
@@ -185,6 +212,9 @@ impl Contract {
     ) -> TokenSeriesJson {
         let initial_storage_usage = env::storage_usage();
         let caller_id = env::predecessor_account_id();
+        //let signer_id = env::signer_account_id();
+
+        assert!(self.admins.contains_key(&caller_id), "{} is't admin and can't create Nft series!", &caller_id);
 
         if creator_id.is_some() {
             assert_eq!(creator_id.unwrap().to_string(), caller_id, "L2E: Caller is not creator_id");
