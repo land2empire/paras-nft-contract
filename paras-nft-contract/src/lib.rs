@@ -130,8 +130,8 @@ impl Contract {
             treasury_id,
             NFTContractMetadata {
                 spec: NFT_METADATA_SPEC.to_string(),
-                name: "LandtoEmpire.com Game Assets".to_string(),
-                symbol: "L2EA".to_string(),
+                name: "LandtoEmpire.com game ASSETS!".to_string(),
+                symbol: "L2ENFT".to_string(),
                 icon: None,
                 base_uri: Some("https://ipfs.fleek.co/ipfs".to_string()),
                 reference: None,
